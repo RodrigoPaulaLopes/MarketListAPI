@@ -80,5 +80,11 @@ public class Produto {
         return preco * quantidade;
     }
 
+    public void setValues(ProdutoDTO p){
+       this.setNome(p.nome());
+       this.setPreco(p.preco());
+       this.setQuantidade(p.quantidade());
+    }
+
     
 }
