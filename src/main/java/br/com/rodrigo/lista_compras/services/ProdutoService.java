@@ -1,5 +1,7 @@
 package br.com.rodrigo.lista_compras.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,13 @@ public class ProdutoService {
     public ProdutoDTO create(ProdutoDTO produto) {
         var model = new Produto(produto);
         var p = produtoRepository.save(model);
-        return new ProdutoDTO(p.getNome(), p.getPreco(), p.getQuantidade(), p.precoTotal());
+        return new ProdutoDTO(p);
+    }
+
+
+    public List<ProdutoDTO> findAll(){
+        var produtos = produtoRepository.findAll().stream().map(ProdutoDTO::new).toList();
+        return produtos;
+        
     }
 }

@@ -7,10 +7,12 @@ import br.com.rodrigo.lista_compras.dtos.ProdutoDTO;
 import br.com.rodrigo.lista_compras.services.ProdutoService;
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/api/v1/produtos")
 public class ProdutoController {
@@ -23,5 +25,11 @@ public class ProdutoController {
         var p = produtoService.create(produto);
         return p;
     }
+
+    @GetMapping
+    public List<ProdutoDTO> findAll() {
+       return produtoService.findAll();
+    }
+    
 
 }
