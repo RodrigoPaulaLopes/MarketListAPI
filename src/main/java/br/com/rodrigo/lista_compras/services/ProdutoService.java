@@ -3,9 +3,7 @@ package br.com.rodrigo.lista_compras.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Service;
-
 import br.com.rodrigo.lista_compras.dtos.ProdutoByIdDTO;
 import br.com.rodrigo.lista_compras.dtos.ProdutoDTO;
 import br.com.rodrigo.lista_compras.model.Produto;
@@ -40,6 +38,9 @@ public class ProdutoService {
     public ProdutoByIdDTO findById(String id) {
         var p = produtoRepository.findProdutoById(id);
         return new ProdutoByIdDTO(p);
+    }
+    public List<ProdutoByIdDTO> findByName(String nome) {
+        return produtoRepository.findByNomeLike(nome).stream().map(ProdutoByIdDTO::new).toList();
     }
 
     public void delete(String id) {

@@ -11,7 +11,6 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,8 +37,12 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public ProdutoByIdDTO findAll(@PathVariable String id) {
+    public ProdutoByIdDTO findById(@PathVariable String id) {
        return produtoService.findById(id);
+    }
+    @GetMapping("/nome/{name}")
+    public List<ProdutoByIdDTO> findByName(@PathVariable String name) {
+       return produtoService.findByName(name);
     }
 
     @PutMapping("/{id}")
